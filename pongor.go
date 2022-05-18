@@ -65,10 +65,10 @@ func getContext(templateData interface{}) pongo2.Context {
 	if isMap {
 		return contextData
 	}
-    contextData, isEchoMap := templateData.(echo.Map)
-    if isEchoMap {
-        return contextData
-    }
+	contextData, isEchoMap := templateData.(echo.Map)
+	if isEchoMap {
+		return contextData
+	}
 	return nil
 }
 
@@ -105,4 +105,9 @@ func (r *Renderer) Render(w io.Writer, name string, data interface{}, ctx echo.C
 	}
 	err = template.ExecuteWriter(getContext(data), w)
 	return err
+}
+
+func RenderHTML(path string, context pongo2.Context) (string, error) {
+	temp := pongo2.Must(pongo2.FromFile(path))
+	return temp.Execute(context)
 }
