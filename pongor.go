@@ -21,7 +21,7 @@ import (
 	"sync"
 
 	"github.com/flosch/pongo2"
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 type PongorOption struct {
